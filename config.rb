@@ -4,7 +4,6 @@ end
 
 activate :sprockets
 
-
 page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
@@ -20,4 +19,8 @@ end
 activate :deploy do |deploy|
   deploy.build_before = true
   deploy.deploy_method = :git
+end
+
+["papillard", "ssaunier", "monsieurpaillard"].each do |name|
+  proxy "/flats/#{name}.html", "/flats/show.html", locals: { owner: name }, ignore: true
 end
